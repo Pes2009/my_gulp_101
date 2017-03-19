@@ -48,6 +48,13 @@ gulp.task('html', function() {
     .pipe(livereload());
 });
 
+// TODO
+gulp.task('images', function() {
+  return gulp.src('src/images/*.jpg')
+    .pipe(gulp.dest('docs/assets/images'))
+    .pipe(livereload());
+});
+
 gulp.task('adoc', function() {
   return gulp.src('src/adoc/**/*.adoc')
     .pipe(asciidoctor({
@@ -69,6 +76,7 @@ gulp.task('watch', function() {
   gulp.watch('src/javascript/**/*.js', ['javascript']);
   gulp.watch('src/scss/**/*.scss', ['css']);
   gulp.watch('src/html/*.html', ['html']);
+  gulp.watch('src/adoc/*.adoc', ['adoc']);
 });
 
 gulp.task('connect', function() {
