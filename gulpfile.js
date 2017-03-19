@@ -10,7 +10,8 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     sass = require('gulp-sass'),
     livereload = require('gulp-livereload'),
-    connect = require('gulp-connect');
+    connect = require('gulp-connect'),
+    asciidoctor = require('gulp-asciidoctor');
 
 const del = require('del');
 
@@ -43,6 +44,18 @@ gulp.task('css', function() {
 
 gulp.task('html', function() {
   return gulp.src('src/html/*.html')
+    .pipe(gulp.dest('docs'))
+    .pipe(livereload());
+});
+
+gulp.task('adoc', function() {
+  return gulp.src('src/adoc/**/*.adoc')
+    .pipe(asciidoctor({
+      safe: 'safe', // unsafe, safe, server or secure
+      doctype: 'article',
+      header_footer: true,
+      attributes: ['showtitle']
+    }))
     .pipe(gulp.dest('docs'))
     .pipe(livereload());
 });
