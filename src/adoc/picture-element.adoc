@@ -11,12 +11,12 @@
 Images managment:
 
 * Proper optimization and weight reduction:
-  use http://www.jpegmini.com/[JPEGmini] and https://tinypng.com/[TinyPNG]
+  use http://www.jpegmini.com/[JPEGmini] and https://tinypng.com/[TinyPNG].
 * Attention to unnecessary waste of bandwidth:
   use _media queries_ for background images; otherwise use
-  _srcset_ attribute or _picture_ element_
+  _srcset_ attribute or _picture_ element.
 * Appropriate resolution for the device in use:
-  use _srcset_ attribute
+  use _srcset_ attribute.
 
 TL;DR:
 
