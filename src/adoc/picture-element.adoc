@@ -1,15 +1,12 @@
-# Responsive images with srcset attribute
+# Responsive images with _srcset_ attribute
 
 :sectnums!:
-:imagesdir: /images
 :sourcedir: src
 :stem: latexmath
 
 * http://caniuse.com[Can I use?]
   - http://caniuse.com/#search=srcset[srcset attribute]
   - http://caniuse.com/#search=picture[picture element]
-
-image::/assets/img/crocus-vernus.jpg[Crosus vernus, 800]
 
 Images managment:
 
@@ -65,8 +62,9 @@ or by visiting http://ryanve.com/lab/resolution[Device Resolution].
 
 ## Prepare dummy images
 
-* http://placehold.it[Placehold] – a quick and simple image placeholder service
-* http://dummyimage.com[Dynamic Dummy Image Generator]
+* https://placehold.it[Placehold] – a quick and simple image placeholder service
+* https://dummyimage.com[Dynamic Dummy Image Generator]
+* http://satyr.io/[Make prototyping easy with _satyr.io_]
 
 Generate gold, red and blue rectangles:
 [source,console]
@@ -94,11 +92,11 @@ Use `srcset` attribute to suggest image – 980, 1280, 1080 dots, respectively:
 
 This fragment of HTML renders on the screen this:
 
-pass:[<img src="http://dummyimage.com/980x180/f2b035/fff.jpg" srcset="http://dummyimage.com/1280x180/bf2633/fff.jpg 2x, http://dummyimage.com/1080x180/0690cc/fff.jpg 3x">]
-pass:[<img src="/assets/img/duck-small.jpg" srcset="/assets/img/duck-large.jpg 2x, /assets/img/duck-medium.jpg 3x">]
+pass:[<img src="https://dummyimage.com/980x180/f2b035/fff.jpg" srcset="https://dummyimage.com/1280x180/bf2633/fff.jpg 2x, https://dummyimage.com/1080x180/0690cc/fff.jpg 3x">]
+pass:[<img src="assets/images/duck-small.jpg" srcset="assets/images/duck-large.jpg 2x, assets/images/duck-medium.jpg 3x">]
 
 
-## My monitors PPIs
+## Monitors PPIs
 
 * https://www.sven.de/dpi/[DPI Calculator / PPI Calculator]
 
