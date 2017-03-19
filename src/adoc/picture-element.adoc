@@ -1,0 +1,114 @@
+# Responsive images with srcset attribute
+
+:sectnums!:
+:imagesdir: /images
+:sourcedir: src
+:stem: latexmath
+
+* http://caniuse.com[Can I use?]
+  - http://caniuse.com/#search=srcset[srcset attribute]
+  - http://caniuse.com/#search=picture[picture element]
+
+image::/assets/img/crocus-vernus.jpg[Crosus vernus, 800]
+
+Images managment:
+
+* Proper optimization and weight reduction:
+  use http://www.jpegmini.com/[JPEGmini] and https://tinypng.com/[TinyPNG]
+* Attention to unnecessary waste of bandwidth:
+  use _media queries_ for background images; otherwise use
+  _srcset_ attribute or _picture_ element_
+* Appropriate resolution for the device in use:
+  use _srcset_ attribute
+
+TL;DR:
+
+* Ryan Van Etten. http://ryanve.com/lab/resolution[Device Resolution]
+* Eric Portis. http://www.smashingmagazine.com/2014/05/14/responsive-images-done-right-guide-picture-srcset[Responsive Images Done Right: A guide to picture and srcset]
+* https://css-tricks.com/responsive-images-youre-just-changing-resolutions-use-srcset[Responsive Images: If you’re just changing resolutions, use srcset]
+* https://css-tricks.com/video-screencasts/133-figuring-responsive-images[Figuring Out Responsive Images]
+
+[cols="3,3,3,1"]
+|===
+|monitor
+|display (dpx)
+|viewport (px)
+|dppx
+
+|HD LCD
+|1920 x 1080
+|1920 x 1080
+|1
+
+|Retina
+|2560 x 1600
+|1280 x 800
+|2
+
+|Smartphone
+|1920 x 1080
+|640 x 360
+|3
+|===
+
+where dpx – device pixels (dots), px – CSS pixels,
+dppx – dots per pixel (resolution).
+
+These numbers could be checked executing the following snippet of JavaScript:
+[source,js]
+----
+document.documentElement.clientWidth
+document.documentElement.clientHeight
+----
+or by visiting http://ryanve.com/lab/resolution[Device Resolution].
+
+
+## Prepare dummy images
+
+* http://placehold.it[Placehold] – a quick and simple image placeholder service
+* http://dummyimage.com[Dynamic Dummy Image Generator]
+
+Generate gold, red and blue rectangles:
+[source,console]
+----
+convert -size  980x180 xc:'#F2B035' gold.jpg  # <1>
+convert -size 1280x180 xc:'#BF2633' red.jpg   # <2>
+convert -size 1080x180 xc:'#068FCC' blue.jpg  # <3>
+----
+<1> half width on HD LCD monitor
+<2> half width on Retina monitor
+<3> full width on Smartphone in portrait orientation
+
+## Suggest the right image with _srcset_
+
+Use `srcset` attribute to suggest image – 980, 1280, 1080 dots, respectively:
+[source,html]
+----
+<img    src="gold.jpg"
+     srcset="red.jpg 2x,
+             blue.jpg 3x">
+<img    src="duck-small.jpg"
+     srcset="duck-large.jpg 2x,
+             duck-medium.jpg 3x">
+----
+
+This fragment of HTML renders on the screen this:
+
+pass:[<img src="http://dummyimage.com/980x180/f2b035/fff.jpg" srcset="http://dummyimage.com/1280x180/bf2633/fff.jpg 2x, http://dummyimage.com/1080x180/0690cc/fff.jpg 3x">]
+pass:[<img src="/assets/img/duck-small.jpg" srcset="/assets/img/duck-large.jpg 2x, /assets/img/duck-medium.jpg 3x">]
+
+
+## My monitors PPIs
+
+* https://www.sven.de/dpi/[DPI Calculator / PPI Calculator]
+
+I measured the widths of 500px and 1000px squares on the devices screen:
+
+* HD LCD, 500px square: 5.83 inch
+* Retina, 1000px square: 4.42 inch
+
+This gives the following PPI (_pixels per inch_):
+----
+ 500 / 5.83 ≅  86 ppi  # HD LCD
+1000 / 4.42 ≅ 227 ppi  # Retina
+----
