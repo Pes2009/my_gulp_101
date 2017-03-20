@@ -20,10 +20,13 @@
 // API key for
 //  Referer: https://h5c3j.github.io/my_gulp_101/news-api.html
 
-function get(url) {
+function get(key, url) {
   return new Promise(function(succeed, fail) {
     var req = new XMLHttpRequest();
+
     req.open("GET", url, true);
+    req.setRequestHeader('x-api-key', key);
+
     req.addEventListener('load', function() {
       if (req.status < 400)
         succeed(req.responseText);
@@ -45,21 +48,23 @@ function get(url) {
 var source = document.querySelector("#article-template").innerHTML;
 var template = Handlebars.compile(source);
 
-function getJSON(url, elt, tmpl) {
-  get(url).then(function(text) {
+function getJSON(key, url, elt, tmpl) {
+  get(key, url).then(function(text) {
     var html = tmpl(JSON.parse(text));
     document.querySelector(elt).insertAdjacentHTML('afterend', html);
   });
 }
 
-var the_next_web = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
-getJSON(the_next_web, "#the-next-web", template);
+var apiKey = 'e070a4527305463a8ab5c15a461e53e0';
 
-var ars_technica = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
-getJSON(ars_technica, "#ars-technica", template);
+var ars_technica = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=latest';
+getJSON(apiKey, ars_technica, "#ars-technica", template);
 
-var hacker_news = 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
-getJSON(hacker_news, "#hacker-news", template);
+var the_next_web = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest';
+getJSON(apiKey, the_next_web, "#the-next-web", template);
 
-var techcrunch = 'https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
-getJSON(techcrunch, "#techcrunch", template);
+var hacker_news = 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest';
+getJSON(apiKey, hacker_news, "#hacker-news", template);
+
+var techcrunch = 'https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest';
+getJSON(apiKey, techcrunch, "#techcrunch", template);
