@@ -45,13 +45,13 @@ function get(url) {
 var source = document.querySelector("#article-template").innerHTML;
 var template = Handlebars.compile(source);
 
-function getJSON(url, tmpl) {
+function getJSON(url, elt, tmpl) {
   get(url).then(function(text) {
     var html = tmpl(JSON.parse(text));
-    document.querySelector("header").insertAdjacentHTML('afterend', html);
+    document.querySelector().insertAdjacentHTML('afterend', html);
   });
 }
 
 var the_next_web = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
 
-getJSON(the_next_web, template);
+getJSON(the_next_web, "#the_next_web", template);
