@@ -48,10 +48,18 @@ var template = Handlebars.compile(source);
 function getJSON(url, elt, tmpl) {
   get(url).then(function(text) {
     var html = tmpl(JSON.parse(text));
-    document.querySelector().insertAdjacentHTML('afterend', html);
+    document.querySelector(elt).insertAdjacentHTML('afterend', html);
   });
 }
 
 var the_next_web = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
+getJSON(the_next_web, "#the-next-web", template);
 
-getJSON(the_next_web, "#the_next_web", template);
+var ars_technica = 'https://newsapi.org/v1/articles?source=ars-technica&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
+getJSON(ars_technica, "#ars-technica", template);
+
+var hacker_news = 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
+getJSON(hacker_news, "#hacker-news", template);
+
+var techcrunch = 'https://newsapi.org/v1/articles?source=techcrunch&sortBy=latest&apiKey=e070a4527305463a8ab5c15a461e53e0';
+getJSON(techcrunch, "#techcrunch", template);

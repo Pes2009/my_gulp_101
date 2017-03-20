@@ -49,6 +49,10 @@ npm install --save-dev gulp # npm i -D gulp
 
 Nie zapomnij dodać do pliku **.gitignore** katalog **_node_modules_**.
 
+New HTML5 semantic elements:
+
+* [Rationale and use cases for standardizing a 'main content' HTML feature](https://www.w3.org/html/wg/wiki/User:Sfaulkne/main-usecases#Introduction)
+
 
 ### HTML5 + CSS3 + ES6
 
