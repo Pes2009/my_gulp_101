@@ -30,6 +30,10 @@ body {
 }
 
 @media only screen and (min-width: 668px) {
+  body {
+    margin: 0;
+  }
+
   .sidebar {
     grid-area: sidebar;
   }
